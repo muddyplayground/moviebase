@@ -1,1 +1,127 @@
-{"info":{"title":"Moviebase","description":"API for movies","version":"1.0.0"},"openapi":"3.0.0"}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Moviebase",
+    "description": "API for movies",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/movies": {
+      "get": {
+        "summary": "List movies",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Movie"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create movie",
+        "responses": {
+          "201": {}
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Movie"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/movies/{movieid}": {
+      "get": {
+        "summary": "Get a movie",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Movie"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a movie",
+        "responses": {
+          "204": {}
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Movie"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete a movie",
+        "responses": {
+          "204": {}
+        }
+      },
+      "parameters": [
+        {
+          "name": "movieid",
+          "in": "path",
+          "description": "The movie ID",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "Movie": {
+        "title": "Root Type for Movie",
+        "description": "The root of the Movie type's schema.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "year": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "string"
+          },
+          "director": {
+            "type": "string"
+          },
+          "plotsummary": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
